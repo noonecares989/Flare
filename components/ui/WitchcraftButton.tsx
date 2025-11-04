@@ -208,6 +208,7 @@ export function CrystalBallButton({ children, onClick, className = '', ...props 
   );
 }
 
+// Created by CyberSultan 👑
 export class MagicalText {
   private text: string;
   private currentIndex = 0;
