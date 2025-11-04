@@ -216,11 +216,15 @@ export default function LandingPage() {
             Join thousands of magical developers building the future, one enchantment at a time
           </p>
           <Link href="/studio">
-            <WitchcraftButton spellType="powerful" className="text-xl px-12 py-8">
+            <MagicalButton3D
+              variant="powerful"
+              size="xl"
+              className="text-xl px-12 py-8"
+            >
               <Sparkles className="mr-3 h-6 w-6" />
               Begin Your Magical Journey
               <ArrowRight className="ml-3 h-6 w-6" />
-            </WitchcraftButton>
+            </MagicalButton3D>
           </Link>
           <div className="flex items-center justify-center gap-4 text-sm text-purple-400">
             <div className="flex items-center gap-2">
