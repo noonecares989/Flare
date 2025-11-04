@@ -1,15 +1,59 @@
-# FlareForge AI Studio
+# 🧙‍♀️ FlareForge AI Studio - Magical Witchcraft Edition
 
-A revolutionary, immersive 3D AI-powered full-stack application builder where multi-agent systems automatically build, preview, edit, and manage applications in real-time.
+A revolutionary, immersive 3D AI-powered full-stack application builder with witchcraft theme, where magical AI agents automatically build, preview, edit, and manage applications in real-time.
 
-## Features
+## ✨ Magical Features
 
-- **Multi-Agent AI Orchestration**: Parallel AI agents build frontend, backend, and database simultaneously
-- **Immersive 3D Environment**: Real-time 3D visualization with Three.js and React Three Fiber
-- **Real-Time Collaboration**: Synchronized cursors, live editing, and presence management
-- **Database Management**: Visual schema designer with live query execution
-- **Zero-Lock Architecture**: Export your codebase anytime, anywhere
-- **Enterprise-Grade Security**: Encrypted API keys and secure collaboration
+- **🔮 Enchanted AI Agents**: Magical AI wizards cast spells to build frontend, backend, and database simultaneously
+- **💎 Mystical 3D Visualization**: Real-time 3D crystalline visualization with magical particle effects
+- **📖 Ancient Grimoire Library**: Spell-crafting system for custom code generation
+- **🛡️ Security Ward Casting**: Automated vulnerability detection and magical protection spells
+- **🔗 One-Click Deployment**: Auto-hosting with single command deployment
+- **💰 Crystal Economy**: Magical marketplace for trading enchanted artifacts
+- **🔗 GitHub Integration**: Push magical creations to repositories
+- **🤝 Closerouter AI Integration**: Free API credits for enhanced magical capabilities
+
+## 🚀 One-Click Deployment
+
+### Quick Start (Recommended)
+
+```bash
+./deploy.sh
+```
+
+This single command will:
+✅ Check system requirements
+✅ Install missing dependencies
+✅ Set up environment configuration
+✅ Start the magical server
+✅ Open your browser automatically
+
+### Manual Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in your environment variables in `.env.local`
+
+4. Set up the database:
+   ```bash
+   npx prisma db push
+   npx prisma generate
+   ```
+
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Quick Start
 
