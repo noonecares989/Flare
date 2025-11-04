@@ -83,10 +83,10 @@ export function WitchcraftButton({
 
   const getSpellIcon = () => {
     const icons = {
-      illusion: '🌟�',
+      illusion: '🌟',
       transmutation: '🔄',
       enchantment: '✨',
-      protection: '🛡',
+      protection: '🛡️',
       divination: '🔮',
       powerful: '⚡'
     };
