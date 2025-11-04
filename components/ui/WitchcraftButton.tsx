@@ -162,6 +162,10 @@ export function WitchcraftButton({
 
 // Specialized buttons for magical effects
 export function SpellBookButton({ children, onClick, className = '', ...props }: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+}) {
   return (
     <WitchcraftButton
       variant="ancient"
