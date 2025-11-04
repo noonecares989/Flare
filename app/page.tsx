@@ -8,13 +8,16 @@ import { ArrowRight, Sparkles, Wand2, CrystalBall, SpellBook, Flame, Heart } fro
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-indigo-950 to-blue-950 text-white">
-      {/* Magical Background Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-indigo-950 to-blue-950 text-white relative">
+      {/* 3D Animated Background */}
+      <AnimatedBackground
+        colorScheme="magical"
+        intensity="high"
+        className="fixed inset-0"
+      />
+
+      {/* Overlay for content */}
+      <div className="relative z-10">
 
       {/* Hero Section */}
       <div className="relative overflow-hidden">
