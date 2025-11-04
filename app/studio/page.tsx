@@ -319,6 +319,12 @@ async function generateCode(prompt, model) {
                   Alerts
                 </Badge>
               )}
+              {hostingResult?.success && !hostingResult.endTime && (
+                <Badge variant="outline" className="text-green-500 border-green-500">
+                  <Globe className="h-3 w-3 mr-1" />
+                  Local Server
+                </Badge>
+              )}
             </div>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
