@@ -86,7 +86,7 @@
     "@types/bcryptjs": "^2.4.0",
     "jsonwebtoken": "^9.0.0",
     "@types/jsonwebtoken": "^9.0.0",
-    "crypto": "^1.0.1",
+    "node-essentials": "^1.0.1",
 
     "archiver": "^6.0.0",
     "jszip": "^3.10.0",
