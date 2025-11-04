@@ -64,10 +64,8 @@ This single command will:
 - Redis (optional for real-time features)
 
 ### Environment Variables
-   ```bash
-   cp .env.example .env.local
-   ```
-   Fill in your environment variables in `.env.local`
+
+Create a `.env.local` file with the following variables:
 
 4. Set up the database:
    ```bash
