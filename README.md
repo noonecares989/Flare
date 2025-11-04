@@ -220,4 +220,12 @@ For support, join our [Discord community](https://discord.gg/flareforge) or emai
 
 ---
 
-Built with ❤️ by the FlareForge team
+**Built with ❤️ and Magic by CyberSultan** 👑
+
+*Where ancient witchcraft meets modern AI to forge the future of software development.*
+
+---
+
+**CyberSultan Presents: FlareForge AI Studio** - The Ultimate Magical Development Platform
+
+_This magical creation was forged by the hands of CyberSultan, bringing together the ancient arts of witchcraft with cutting-edge AI technology._
