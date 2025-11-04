@@ -1,9 +1,13 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment } from '@react-three/drei';
+import { OrbitControls, Environment, Effects, Bloom } from '@react-three/drei';
 import { LoadingOverlay } from './LoadingOverlay';
+import { ParticleSystem } from './ParticleSystem';
+import { AgentVisualizations } from './AgentVisualizations';
+import { HolographicEffect } from './HolographicEffect';
+import { AgentType } from '@/lib/ai/agentConfigs';
 
 interface ForgeCanvasProps {
   projectId: string;
