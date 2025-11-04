@@ -31,6 +31,7 @@ import { BugDetector, CodeIssue } from '@/components/security/BugDetector';
 import { GitHubIntegration, GitHubCommit } from '@/components/github/GitHubIntegration';
 import { ApiCreditMonitor, CreditAlert } from '@/components/monitoring/ApiCreditMonitor';
 import { AdvancedCodeEditor } from '@/components/editor/AdvancedCodeEditor';
+import { AutoHoster, HostingResult } from '@/components/deployment/AutoHoster';
 
 export default function StudioPage() {
   const [activeTab, setActiveTab] = useState<'editor' | 'terminal' | 'security' | 'github' | 'api' | 'monitor'>('editor');
