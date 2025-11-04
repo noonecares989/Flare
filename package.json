@@ -1,7 +1,7 @@
 {
   "name": "flareforge-ai-studio",
   "version": "2.0.0",
-  "description": "Advanced AI-powered development platform with witchcraft theme - One-click local deployment",
+  "description": "Advanced AI-powered development platform with witchcraft theme - One-click local deployment - Created by CyberSultan",
   "main": "index.js",
   "private": true,
   "scripts": {
