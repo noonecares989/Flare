@@ -34,7 +34,7 @@ import { AdvancedCodeEditor } from '@/components/editor/AdvancedCodeEditor';
 import { AutoHoster, HostingResult } from '@/components/deployment/AutoHoster';
 
 export default function StudioPage() {
-  const [activeTab, setActiveTab] = useState<'editor' | 'terminal' | 'security' | 'github' | 'api' | 'monitor'>('editor');
+  const [activeTab, setActiveTab] = useState<'editor' | 'terminal' | 'security' | 'github' | 'api' | 'monitor' | 'deploy'>('editor');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [userId] = useState('demo-user-' + Date.now());
   const [projectId] = useState('project-' + Date.now());
