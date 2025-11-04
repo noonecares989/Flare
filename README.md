@@ -2,6 +2,10 @@
 
 A revolutionary, immersive 3D AI-powered full-stack application builder with witchcraft theme, where magical AI agents automatically build, preview, edit, and manage applications in real-time.
 
+**Created by CyberSultan** 👑
+
+_Where ancient witchcraft meets modern AI to forge the future of software development._
+
 ## ✨ Magical Features
 
 - **🔮 Enchanted AI Agents**: Magical AI wizards cast spells to build frontend, backend, and database simultaneously
