@@ -244,6 +244,10 @@ async function generateCode(prompt, model) {
     setCreditAlerts(prev => [alert, ...prev]);
   };
 
+  const handleHostingComplete = (result: HostingResult) => {
+    setHostingResult(result);
+  };
+
   const handleFileSaved = (file: CodeFile) => {
     setFiles(prev => prev.map(f => f.id === file.id ? file : f));
     if (selectedFile?.id === file.id) {
