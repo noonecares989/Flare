@@ -188,25 +188,33 @@ export function ApiKeyManager({ userId, onKeysUpdate, className = '' }: ApiKeyMa
     },
     {
       id: 'closerouter',
-      name: 'Closerouter AI',
-      description: 'Multi-provider AI aggregation with free credits',
-      baseUrl: 'https://api.closerouter.ai',
-      keyPattern: /^cr_[A-Za-z0-9_-]{32,64}$/,
+      name: 'Closerouter.com',
+      description: 'Free AI models from Closerouter.com - Add your API key from closerouter.com',
+      baseUrl: 'https://api.closerouter.com/v1',
+      keyPattern: /^cr_[A-Za-z0-9_-]{32,}$/,
       supportedModels: [
-        'closerouter-gpt-4',
-        'closerouter-claude-3.5-sonnet',
-        'closerouter-gemini-pro',
-        'closerouter-grok',
-        'closerouter-llama-3-70b'
+        'claude-3-5-sonnet',
+        'gpt-4',
+        'gpt-4-turbo',
+        'gemini-pro',
+        'gemini-1.5-pro',
+        'grok-beta',
+        'llama-3.1-70b',
+        'mixtral-8x7b',
+        'claude-3-opus',
+        'claude-3-sonnet',
+        'claude-3-haiku',
+        'gpt-3.5-turbo'
       ],
-      maxTokens: 200000,
+      maxTokens: 1048576,
       icon: '🔮',
       color: 'text-violet-400',
-      features: ['Chat', 'Code Generation', 'Multi-Provider', 'Free Credits', 'Auto-Fallback'],
+      features: ['Chat', 'Code Generation', 'Free Credits', 'Multi-Provider', 'All AI Models', 'Auto-Fallback'],
       pricing: {
-        inputTokens: 0.00001,
-        outputTokens: 0.00003
-      }
+        inputTokens: 0.000001, // Much cheaper with free credits
+        outputTokens: 0.000002
+      },
+      externalUrl: 'https://closerouter.com'
     }
   ];
 
