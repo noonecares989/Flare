@@ -50,16 +50,24 @@ export default function LandingPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
               <Link href="/studio">
-                <WitchcraftButton spellType="enchantment" className="text-lg px-8 py-6">
+                <MagicalButton3D
+                  variant="enchantment"
+                  size="lg"
+                  className="text-lg px-8 py-6"
+                >
                   <Wand2 className="mr-2 h-5 w-5" />
                   Enter the Magical Studio
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </WitchcraftButton>
+                </MagicalButton3D>
               </Link>
-              <WitchcraftButton spellType="illusion" className="text-lg px-8 py-6">
+              <MagicalButton3D
+                variant="illusion"
+                size="lg"
+                className="text-lg px-8 py-6"
+              >
                 <CrystalBall className="mr-2 h-5 w-5" />
                 Witness the Magic
-              </WitchcraftButton>
+              </MagicalButton3D>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-16">
