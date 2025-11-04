@@ -167,24 +167,31 @@ export function CloserouterConfig({ userId }: { userId: string }) {
                 <p className="text-sm text-violet-300">Multi-provider AI with free credits</p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              {status && (
-                <div className="text-right">
-                  <div className="text-sm text-violet-300">Total Usage</div>
-                  <div className="text-lg font-bold text-green-400">
-                    {formatCost(status.usage.totalCost)}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                {status && (
+                  <div className="text-right">
+                    <div className="text-sm text-violet-300">Total Usage</div>
+                    <div className="text-lg font-bold text-green-400">
+                      {formatCost(status.usage.totalCost)}
+                    </div>
                   </div>
+                )}
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="text-xs text-cyan-300">
+                  <span className="text-cyan-400">👑</span> Created by CyberSultan
                 </div>
-              )}
-              <WitchcraftButton
-                onClick={checkStatus}
-                spellType="enchantment"
-                size="sm"
-                disabled={isLoading}
-              >
-                <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-                Refresh
-              </WitchcraftButton>
+                <WitchcraftButton
+                  onClick={checkStatus}
+                  spellType="enchantment"
+                  size="sm"
+                  disabled={isLoading}
+                >
+                  <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+                  Refresh
+                </WitchcraftButton>
+              </div>
             </div>
           </div>
         </div>
