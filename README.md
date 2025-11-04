@@ -55,23 +55,15 @@ This single command will:
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Quick Start
+## 🔧 Requirements
 
 ### Prerequisites
 
 - Node.js 18+
-- PostgreSQL database
-- Redis (for real-time features)
+- PostgreSQL database (optional for basic usage)
+- Redis (optional for real-time features)
 
-### Installation
-
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up environment variables:
+### Environment Variables
    ```bash
    cp .env.example .env.local
    ```
