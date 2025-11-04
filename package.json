@@ -1,11 +1,13 @@
 {
   "name": "flareforge-ai-studio",
-  "version": "0.1.0",
+  "version": "2.0.0",
+  "description": "Advanced AI-powered development platform with witchcraft theme - One-click local deployment",
+  "main": "index.js",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node index.js",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "db:push": "prisma db push",
@@ -14,7 +16,14 @@
     "db:studio": "prisma studio",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "deploy": "./deploy.sh",
+    "deploy-local": "./deploy.sh",
+    "install-all": "npm install && ./deploy.sh",
+    "check-deps": "node -v && npm -v",
+    "check-env": "test -f .env && echo '.env exists' || echo 'No .env file'",
+    "setup": "npm install && npm run check-deps && npm run check-env && npm start",
+    "quick-start": "./deploy.sh"
   },
   "dependencies": {
     "next": "^14.2.0",
