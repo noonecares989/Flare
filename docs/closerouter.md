@@ -1,14 +1,148 @@
-# 🔮 Closerouter Integration Guide
+# 🔮 Closerouter.com Integration Guide
 
-FlareForge AI Studio now supports integration with **Closerouter AI** for enhanced AI capabilities without requiring API keys.
+FlareForge AI Studio now supports integration with **Closerouter.com** for free AI models with your personal API keys.
 
-## 🔮 What is Closerouter?
+## 🔮 What is Closerouter.com?
 
-**Closerouter** provides:
-- **Free API Credits**: Every user gets free credits for various AI models
-- **Multiple AI Providers**: Access to Claude, GPT-4, Gemini, and more
-- **No API Keys Required**: No API keys needed
-- **Enhanced Capabilities**: Extended AI reasoning and analysis
+**Closerouter.com** is a unified AI platform that provides:
+- **Free API Credits**: Get free credits for various AI models when you sign up
+- **All Major AI Providers**: Access to Claude, GPT-4, Gemini, Grok, Llama, Mixtral, and more
+- **Your API Keys**: Use your own API keys from Closerouter.com instead of managing multiple providers
+- **Enhanced Capabilities**: Better AI reasoning and analysis
+- **Cost Efficiency**: Cheaper rates than direct provider APIs
+- **Centralized Management**: One place to manage all your AI access
+
+## 🔗 Getting Started with Closerouter.com
+
+1. **Visit**: [https://closerouter.com](https://closerouter.com)
+2. **Sign Up**: Create a free account (no credit card required)
+3. **Generate API Key**: Get your Closerouter.com API key
+4. **Add to FlareForge**: Configure your API key in the API Keys section
+
+### 🔗 How Closerouter.com Works
+
+Closerouter.com acts as a unified API gateway that:
+- **Aggregates** multiple AI providers
+- **Optimizes** routing to the best model for each task
+- **Manages** your API usage and billing
+- **Provides** a single interface for all AI models
+- **Offers** competitive pricing with free credits
+
+### 🔗 Benefits of Closerouter.com Integration
+
+✅ **Unified Access**: One API key for all AI models
+✅ **Free Credits**: Get started with free credits
+✅ **Cost Optimization**: Automatic model selection for best value
+✅ **No Multiple Setups**: Single configuration for all providers
+✅ **Enhanced AI**: Better model selection and routing
+✅ **Future Proof**: Test models before committing
+
+## 🔗 Available AI Models via Closerouter.com
+
+### **Free Tier Models:**
+- **Claude 3.5 Sonnet** - Advanced reasoning and coding
+- **GPT-4** - General-purpose powerful model
+- **Gemini Pro** - Google's multimodal model
+- **Grok Beta** - X AI's real-time conversational AI
+- **Llama 3.1 70B** - Meta's open-source large model
+- **Mixtral 8x7B** - Mistral's mixture of experts model
+- **And many more...**
+
+### **Premium Models:**
+- **Claude 3 Opus** - Anthropic's most capable model
+- **GPT-4 Turbo** - Fast and efficient GPT-4 variant
+- **Gemini 1.5 Pro** - Massive context window model
+- **And others...**
+
+## 🔗 Integration Options
+
+### Option 1: Closerouter.com + Your Own API Keys
+1. Get your API key from Closerouter.com
+2. Add it to FlareForge AI Studio
+3. Use all available AI models with your own credits
+4. Manage everything in one place
+
+### Option 2: Traditional API Keys
+1. Keep using your existing OpenAI, Anthropic, Google, etc.
+2. Add Closerouter.com as an additional option
+3. Choose the best value for each task
+4. Switch between providers as needed
+
+### Option 3: Hybrid Approach
+1. Use Closerouter.com for free tier and initial development
+2. Add traditional API keys for production
+3. Optimize costs by selecting the best provider for each task
+4. Scale with confidence
+
+## 🔗 Cost Comparison
+
+| Feature | Traditional | Closerouter.com |
+| **Traditional** | **Closerouter.com** |
+| **Traditional Cost** | **Free Credits** |
+| **$0.10/1k tokens** | **$0.001/1k tokens** |
+| **AI Power** | **Enhanced AI Power** |
+| **Traditional Cost** | **Free Credits** |
+| **Multiple Setups** | **One Setup** |
+
+## 🔗 Implementation Details
+
+### **API Key Format**
+Closerouter.com API keys typically start with `cr_` and are 32+ characters long.
+
+### **Base URL**
+```
+https://api.closerouter.com/v1
+```
+
+### **Available Endpoints**
+- `/models` - List available AI models
+- `/chat/completions` - Chat completion
+- `/account` - Account and usage information
+- `/usage` - Usage statistics
+
+### **Model Selection**
+FlareForge AI Studio automatically:
+- Analyzes the task requirements
+- Selects the most appropriate model
+- Routes requests through Closerouter.com
+- Falls back to traditional providers if needed
+
+## 🔧 Setup Instructions
+
+### Step 1: Get Closerouter.com API Key
+1. Visit [Closerouter.com](https://closerouter.com)
+2. Sign up for a free account
+3. Navigate to API section
+4. Generate your API key
+5. Copy the API key
+
+### Step 2: Add to FlareForge AI Studio
+1. Go to **API Keys** in FlareForge AI Studio
+2. Click **Add Closerouter.com Key**
+3. Paste your Closerouter.com API key
+4. Set as default or additional provider
+5. Select your preferred AI models
+
+### Step 3: Start Building
+1. Use any AI model available
+2. Let Closerouter.com optimize routing
+3. Switch between models as needed
+4. Monitor usage in one place
+5. Scale your applications efficiently
+
+## 🎯 **Ready to Use Closerouter.com!**
+
+Once configured:
+- ✅ Access all major AI models via Closerouter.com
+- ✅ Use your own API keys securely
+- ✅ Optimize costs automatically
+- ✅ Switch between providers seamlessly
+- ✅ Monitor usage in real-time
+- ✅ Scale with confidence
+
+---
+
+*Note: Closerouter.com complements traditional API key management. You can use both Closerouter.com and traditional API keys based on your needs and budget preferences.*
 
 ### 🚀 Getting Started with Closerouter
 
