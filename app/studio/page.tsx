@@ -48,6 +48,7 @@ export default function StudioPage() {
   const [codeIssues, setCodeIssues] = useState<CodeIssue[]>([]);
   const [githubCommits, setGithubCommits] = useState<GitHubCommit[]>([]);
   const [creditAlerts, setCreditAlerts] = useState<CreditAlert[]>([]);
+  const [hostingResult, setHostingResult] = useState<HostingResult | null>(null);
 
   // Initialize demo data
   useEffect(() => {
