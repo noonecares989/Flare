@@ -1,62 +1,79 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { WitchcraftButton } from '@/components/ui/WitchcraftButton';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Zap, Users, Box, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Wand2, CrystalBall, SpellBook, Flame, Heart } from 'lucide-react';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-indigo-950 to-blue-950 text-white">
+      {/* Magical Background Effects */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+      </div>
+
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/20 to-transparent" />
 
         <div className="relative container mx-auto px-4 pt-20 pb-32">
           <div className="text-center space-y-8">
             <div className="space-y-4">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Wand2 className="h-8 w-8 text-purple-400 animate-pulse" />
+                <div className="text-sm text-purple-300 font-medium tracking-wider">THE WITCHCRAFT EDITION</div>
+                <Wand2 className="h-8 w-8 text-purple-400 animate-pulse" />
+              </div>
+
               <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
-                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent animate-pulse">
                   FlareForge
                 </span>
                 <br />
-                <span className="text-4xl md:text-6xl text-gray-300">
-                  AI Studio
+                <span className="text-4xl md:text-6xl text-purple-200">
+                  Magical AI Studio
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                Revolutionary 3D workspace where AI agents build full-stack applications in real-time.
+              <p className="text-xl md:text-2xl text-purple-300 max-w-3xl mx-auto leading-relaxed">
+                Where ancient witchcraft meets modern technology to create enchanted applications.
                 <br />
-                <span className="text-purple-400">Describe. Animate. Collaborate. Forge.</span>
+                <span className="text-purple-400 font-semibold">✨ Cast Spells • Craft Code • Build Magic ✨</span>
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
               <Link href="/studio">
-                <Button size="lg" className="text-lg px-8 py-6 bg-purple-600 hover:bg-purple-700 btn-glow">
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Enter Studio
+                <WitchcraftButton spellType="enchantment" className="text-lg px-8 py-6">
+                  <Wand2 className="mr-2 h-5 w-5" />
+                  Enter the Magical Studio
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                </WitchcraftButton>
               </Link>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-purple-500 text-purple-400 hover:bg-purple-950">
-                Watch Demo
-              </Button>
+              <WitchcraftButton spellType="illusion" className="text-lg px-8 py-6">
+                <CrystalBall className="mr-2 h-5 w-5" />
+                Witness the Magic
+              </WitchcraftButton>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-16">
-              <FeatureCard
-                icon={<Zap className="h-8 w-8" />}
-                title="Multi-Agent AI"
-                description="Parallel AI agents build frontend, backend, and database simultaneously"
+              <MagicalFeatureCard
+                icon={<Wand2 className="h-8 w-8" />}
+                title="Enchanted AI Agents"
+                description="Magical AI wizards cast spells to build your applications"
+                spellType="enchantment"
               />
-              <FeatureCard
-                icon={<Box className="h-8 w-8" />}
-                title="3D Visualization"
-                description="Watch your app come to life in immersive holographic 3D space"
+              <MagicalFeatureCard
+                icon={<CrystalBall className="h-8 w-8" />}
+                title="Mystical 3D Visualization"
+                description="Watch your enchanted app manifest in crystalline 3D space"
+                spellType="divination"
               />
-              <FeatureCard
-                icon={<Users className="h-8 w-8" />}
-                title="Real-Time Collab"
-                description="Code together with synchronized cursors and live editing"
+              <MagicalFeatureCard
+                icon={<SpellBook className="h-8 w-8" />}
+                title="Ancient Spell Crafting"
+                description="Craft powerful spells and magical code artifacts"
+                spellType="transmutation"
               />
             </div>
           </div>
