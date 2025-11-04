@@ -277,7 +277,8 @@ async function generateCode(prompt, model) {
     { id: 'security', name: 'Security Scanner', icon: Shield },
     { id: 'github', name: 'GitHub', icon: Github },
     { id: 'api', name: 'API Keys', icon: Zap },
-    { id: 'monitor', name: 'Usage Monitor', icon: Activity }
+    { id: 'monitor', name: 'Usage Monitor', icon: Activity },
+    { id: 'deploy', name: 'Auto-Deploy', icon: Server }
   ];
 
   return (
