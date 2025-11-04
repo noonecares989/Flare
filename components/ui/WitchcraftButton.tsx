@@ -186,6 +186,10 @@ export function SpellBookButton({ children, onClick, className = '', ...props }:
 }
 
 export function CrystalBallButton({ children, onClick, className = '', ...props }: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+}) {
   return (
     <WitchcraftButton
       variant="powerful"
@@ -197,7 +201,7 @@ export function CrystalBallButton({ children, onClick, className = '', ...props 
       {...props}
     >
       <span className="flex items-center gap-2">
-        <span className="text-xl">💎�</span>
+        <span className="text-xl">💎</span>
         <span>{children}</span>
       </span>
     </WitchcraftButton>
