@@ -17,6 +17,8 @@ NC='\033[0m' # No Color
 # Header
 echo -e "${PURPLE}🧙‍♀️ FlareForge AI Studio - One-Click Deployment${NC}"
 echo -e "${BLUE}===============================================${NC}"
+echo -e "${CYAN}Created by CyberSultan 👑${NC}"
+echo
 echo
 
 # Check if we're in the right directory
