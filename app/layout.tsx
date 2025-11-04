@@ -31,6 +31,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           {children}
+          <div className="cybersultan-watermark">CyberSultan</div>
         </Providers>
       </body>
     </html>
