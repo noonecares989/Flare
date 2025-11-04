@@ -17,6 +17,9 @@ import {
   EyeOff
 } from 'lucide-react';
 import { WitchcraftButton } from '@/components/ui/WitchcraftButton';
+import { MagicalButton3D } from '@/components/ui/MagicalButton3D';
+import { MagicalCard3D } from '@/components/ui/MagicalCard3D';
+import { AnimatedBackground } from '@/components/3d/AnimatedBackground';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
