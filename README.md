@@ -67,22 +67,7 @@ This single command will:
 
 Create a `.env.local` file with the following variables:
 
-4. Set up the database:
-   ```bash
-   npx prisma db push
-   npx prisma generate
-   ```
-
-5. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-6. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## Environment Variables
-
-Create a `.env.local` file with the following variables:
+```env
 
 ```env
 # Database
