@@ -204,6 +204,10 @@ export default function LandingPage() {
               <Wand2 className="h-4 w-4 text-blue-400" />
               <span>Enchanted with wisdom</span>
             </div>
+            <div className="flex items-center gap-2">
+              <span className="text-cyan-400">👑</span>
+              <span className="text-cyan-300">Created by CyberSultan</span>
+            </div>
           </div>
         </div>
       </div>
