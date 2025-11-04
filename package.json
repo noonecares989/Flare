@@ -71,6 +71,7 @@
     "openai": "^4.36.0",
     "@anthropic-ai/sdk": "^0.20.0",
     "groq": "^3.44.0",
+    "closerouter": "^1.0.0",
     "@supabase/supabase-js": "^2.39.0",
     "upstash-redis": "^1.28.0",
     "@upstash/redis": "^1.28.0",
