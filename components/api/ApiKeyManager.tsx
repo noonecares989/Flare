@@ -185,6 +185,28 @@ export function ApiKeyManager({ userId, onKeysUpdate, className = '' }: ApiKeyMa
         inputTokens: 0.000008,
         outputTokens: 0.000024
       }
+    },
+    {
+      id: 'closerouter',
+      name: 'Closerouter AI',
+      description: 'Multi-provider AI aggregation with free credits',
+      baseUrl: 'https://api.closerouter.ai',
+      keyPattern: /^cr_[A-Za-z0-9_-]{32,64}$/,
+      supportedModels: [
+        'closerouter-gpt-4',
+        'closerouter-claude-3.5-sonnet',
+        'closerouter-gemini-pro',
+        'closerouter-grok',
+        'closerouter-llama-3-70b'
+      ],
+      maxTokens: 200000,
+      icon: '🔮',
+      color: 'text-violet-400',
+      features: ['Chat', 'Code Generation', 'Multi-Provider', 'Free Credits', 'Auto-Fallback'],
+      pricing: {
+        inputTokens: 0.00001,
+        outputTokens: 0.00003
+      }
     }
   ];
 
