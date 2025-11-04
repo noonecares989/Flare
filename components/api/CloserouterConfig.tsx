@@ -153,8 +153,13 @@ export function CloserouterConfig({ userId }: { userId: string }) {
   };
 
   return (
-    <div className="h-full bg-gradient-to-br from-violet-900/50 via-purple-900/50 to-indigo-900/50">
-      <div className="h-full flex flex-col">
+    <div className="h-full bg-gradient-to-br from-violet-900/50 via-purple-900/50 to-indigo-900/50 relative">
+      <AnimatedBackground
+        colorScheme="cyber"
+        intensity="medium"
+        className="absolute inset-0"
+      />
+      <div className="h-full flex flex-col relative z-10">
         {/* Header */}
         <div className="bg-black/30 backdrop-blur-md border-b border-violet-500/30 p-6">
           <div className="flex items-center justify-between">
