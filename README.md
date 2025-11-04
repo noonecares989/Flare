@@ -12,6 +12,8 @@ A revolutionary, immersive 3D AI-powered full-stack application builder with wit
 - **💰 Crystal Economy**: Magical marketplace for trading enchanted artifacts
 - **🔗 GitHub Integration**: Push magical creations to repositories
 - **🤝 Closerouter AI Integration**: Free API credits for enhanced magical capabilities
+- **🔑 Multi-Provider API Keys**: Use your own API keys from OpenAI, Anthropic, Google, Groq, and Closerouter
+- **💰 Cost Optimization**: Automatic cost optimization with free credits and fallback providers
 
 ## 🚀 One-Click Deployment
 
