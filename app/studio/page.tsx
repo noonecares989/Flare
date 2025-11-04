@@ -1,270 +1,459 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { WitchcraftButton } from '@/components/ui/WitchcraftButton';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
+  Code2,
+  Terminal,
+  Shield,
+  Github,
+  Activity,
   Zap,
-  Code,
-  Database,
-  Users,
   Settings,
+  Eye,
+  Bug,
   Play,
-  Plus,
-  Loader2
+  Monitor,
+  Moon,
+  Sun,
+  Sparkles,
+  Wand2,
+  CrystalBall
 } from 'lucide-react';
-import { ForgeCanvas } from '@/components/3d/ForgeCanvas';
-import { useToast } from '@/hooks/use-toast';
+
+// Import all our advanced components
+import { ApiKeyManager, ApiKey } from '@/components/api/ApiKeyManager';
+import { TerminalEmulator, TerminalCommand } from '@/components/execution/TerminalEmulator';
+import { CodeExecutor, CodeFile, ExecutionResult } from '@/components/execution/CodeExecutor';
+import { BugDetector, CodeIssue } from '@/components/security/BugDetector';
+import { GitHubIntegration, GitHubCommit } from '@/components/github/GitHubIntegration';
+import { ApiCreditMonitor, CreditAlert } from '@/components/monitoring/ApiCreditMonitor';
+import { AdvancedCodeEditor } from '@/components/editor/AdvancedCodeEditor';
 
 export default function StudioPage() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  const { toast } = useToast();
+  const [activeTab, setActiveTab] = useState<'editor' | 'terminal' | 'security' | 'github' | 'api' | 'monitor'>('editor');
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [userId] = useState('demo-user-' + Date.now());
+  const [projectId] = useState('project-' + Date.now());
 
-  const [projects, setProjects] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [newProjectName, setNewProjectName] = useState('');
-  const [selectedProject, setSelectedProject] = useState(null);
+  // State for different components
+  const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
+  const [files, setFiles] = useState<CodeFile[]>([]);
+  const [selectedFile, setSelectedFile] = useState<CodeFile | null>(null);
+  const [terminalCommands, setTerminalCommands] = useState<TerminalCommand[]>([]);
+  const [executionResults, setExecutionResults] = useState<ExecutionResult[]>([]);
+  const [codeIssues, setCodeIssues] = useState<CodeIssue[]>([]);
+  const [githubCommits, setGithubCommits] = useState<GitHubCommit[]>([]);
+  const [creditAlerts, setCreditAlerts] = useState<CreditAlert[]>([]);
 
+  // Initialize demo data
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/auth/signin');
-    }
-  }, [status, router]);
+    initializeDemoData();
+  }, []);
 
-  useEffect(() => {
-    if (session) {
-      fetchProjects();
-    }
-  }, [session]);
+  const initializeDemoData = () => {
+    // Demo files
+    const demoFiles: CodeFile[] = [
+      {
+        id: '1',
+        name: 'App.js',
+        content: `const express = require('express');
+const app = express();
+const port = 3000;
 
-  const fetchProjects = async () => {
-    try {
-      const response = await fetch('/api/projects');
-      if (response.ok) {
-        const data = await response.json();
-        setProjects(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch projects:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to load projects',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+// AI-powered endpoint
+app.get('/api/generate', async (req, res) => {
+  const { prompt, model } = req.body;
 
-  const createProject = async () => {
-    if (!newProjectName.trim()) {
-      toast({
-        title: 'Error',
-        description: 'Please enter a project name',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/projects', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: newProjectName }),
-      });
-
-      if (response.ok) {
-        const newProject = await response.json();
-        setProjects([newProject, ...projects]);
-        setNewProjectName('');
-        toast({
-          title: 'Success',
-          description: 'Project created successfully',
-        });
-      }
-    } catch (error) {
-      toast({
-        title: 'Error',
-        description: 'Failed to create project',
-        variant: 'destructive',
-      });
-    }
-  };
-
-  if (status === 'loading' || isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
+  try {
+    // This would connect to your AI API
+    const result = await generateCode(prompt, model);
+    res.json({ success: true, data: result });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
+});
 
-  if (selectedProject) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-white">
-        {/* Header */}
-        <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-          <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                onClick={() => setSelectedProject(null)}
-                className="text-gray-400 hover:text-white"
-              >
-                ← Back to Projects
-              </Button>
-              <div>
-                <h1 className="text-xl font-semibold">{selectedProject.name}</h1>
-                <p className="text-sm text-gray-400">3D AI Workspace</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Badge variant="outline" className="text-green-400 border-green-400">
-                <Zap className="h-3 w-3 mr-1" />
-                AI Ready
-              </Badge>
-              <Button size="sm">
-                <Play className="h-4 w-4 mr-2" />
-                Start Building
-              </Button>
-            </div>
-          </div>
+app.listen(port, () => {
+  console.log(\`🚀 AI Studio running at http://localhost:\${port}\`);
+});
+
+// AI code generation function
+async function generateCode(prompt, model) {
+  // Implementation would use your API keys
+  return { code: 'Generated code', language: 'javascript' };
+}`,
+        language: 'javascript',
+        path: '/src/App.js',
+        size: 589,
+        lastModified: new Date()
+      },
+      {
+        id: '2',
+        name: 'index.html',
+        content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlareForge AI Studio - Advanced Platform</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧙‍♀️ FlareForge AI Studio</h1>
+            <p>Advanced AI-powered development platform with magical features</p>
         </header>
 
-        {/* Main 3D Workspace */}
-        <main className="relative h-[calc(100vh-60px)]">
-          <ForgeCanvas
-            projectId={selectedProject.id}
-            sessionId={selectedProject.id}
-          />
+        <main>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h2>🔮 Multi-AI Provider Support</h2>
+                    <p>Connect OpenAI, Anthropic, Google, and more with your own API keys</p>
+                </div>
+                <div class="feature-card">
+                    <h2>🛡️ Advanced Security Scanning</h2>
+                    <p>Automatic bug detection, vulnerability scanning, and auto-fix capabilities</p>
+                </div>
+                <div class="feature-card">
+                    <h2>🚀 Code Execution & Preview</h2>
+                    <p>Run your code in real-time with live preview and terminal access</p>
+                </div>
+                <div class="feature-card">
+                    <h2>📊 Real-time API Monitoring</h2>
+                    <p>Track your API usage, costs, and remaining credits in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <h2>🔗 GitHub Integration</h2>
+                    <p>Seamlessly push your code to GitHub with version control</p>
+                </div>
+                <div class="feature-card">
+                    <h2>✨ Advanced Code Editor</h2>
+                    <p>Syntax highlighting, auto-completion, and intelligent code completion</p>
+                </div>
+            </div>
         </main>
-      </div>
-    );
-  }
+    </div>
+</body>
+</html>`,
+        language: 'html',
+        path: '/public/index.html',
+        size: 3423,
+        lastModified: new Date()
+      },
+      {
+        id: '3',
+        name: 'package.json',
+        content: `{
+  "name": "flareforge-advanced-studio",
+  "version": "2.0.0",
+  "description": "Advanced AI-powered development platform",
+  "main": "src/App.js",
+  "scripts": {
+    "start": "node src/App.js",
+    "dev": "nodemon src/App.js",
+    "test": "jest",
+    "build": "webpack --mode production",
+    "security-scan": "npm audit",
+    "lint": "eslint src/",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.5.0",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0",
+    "webpack": "^5.88.0"
+  },
+  "keywords": [
+    "ai",
+    "development",
+    "code-generation",
+    "security",
+    "automation"
+  ],
+  "author": "FlareForge AI Studio",
+  "license": "MIT"
+}`,
+        language: 'json',
+        path: '/package.json',
+        size: 1123,
+        lastModified: new Date()
+      }
+    ];
+
+    setFiles(demoFiles);
+    setSelectedFile(demoFiles[0]);
+  };
+
+  const handleCommandExecuted = (command: TerminalCommand) => {
+    setTerminalCommands(prev => [command, ...prev]);
+  };
+
+  const handleExecutionComplete = (result: ExecutionResult) => {
+    setExecutionResults(prev => [result, ...prev]);
+  };
+
+  const handleIssuesDetected = (issues: CodeIssue[]) => {
+    setCodeIssues(prev => [...issues, ...prev]);
+  };
+
+  const handleCommitComplete = (commit: GitHubCommit) => {
+    setGithubCommits(prev => [commit, ...prev]);
+  };
+
+  const handleAlertTriggered = (alert: CreditAlert) => {
+    setCreditAlerts(prev => [alert, ...prev]);
+  };
+
+  const handleFileSaved = (file: CodeFile) => {
+    setFiles(prev => prev.map(f => f.id === file.id ? file : f));
+    if (selectedFile?.id === file.id) {
+      setSelectedFile(file);
+    }
+  };
+
+  const handleContentChange = (content: string) => {
+    if (selectedFile) {
+      const updatedFile = { ...selectedFile, content };
+      setSelectedFile(updatedFile);
+    }
+  };
+
+  const handleRunCode = (file: CodeFile) => {
+    console.log('Running code:', file.name);
+    // This would trigger the code executor
+  };
+
+  const handleBugDetected = (line: number, issue: string) => {
+    console.log(`Bug detected at line ${line}: ${issue}`);
+  };
+
+  const tabs = [
+    { id: 'editor', name: 'Code Editor', icon: Code2 },
+    { id: 'terminal', name: 'Terminal', icon: Terminal },
+    { id: 'security', name: 'Security Scanner', icon: Shield },
+    { id: 'github', name: 'GitHub', icon: Github },
+    { id: 'api', name: 'API Keys', icon: Zap },
+    { id: 'monitor', name: 'Usage Monitor', icon: Activity }
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                FlareForge Studio
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+      {/* Magical Header */}
+      <div className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b p-4`}>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Wand2 className="h-8 w-8 text-purple-500" />
+              <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                FlareForge AI Studio
               </h1>
-              <p className="text-gray-400 mt-1">Your AI-powered development workspace</p>
+              <Sparkles className="h-5 w-5 text-purple-400 animate-pulse" />
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-400">
-                Welcome back, {session?.user?.name || session?.user?.email}
-              </div>
-              <Button variant="outline" size="sm">
-                <Settings className="h-4 w-4 mr-2" />
-                Settings
-              </Button>
+            <Badge variant="outline" className="text-purple-500 border-purple-500">
+              🧙‍♀️ Advanced Platform
+            </Badge>
+          </div>
+          <div className="flex items-center gap-4">
+            {/* Status Indicators */}
+            <div className="flex items-center gap-2">
+              {apiKeys.length > 0 && (
+                <Badge variant="outline" className="text-green-500 border-green-500">
+                  <CheckCircle className="h-3 w-3 mr-1" />
+                  {apiKeys.length} API Keys
+                </Badge>
+              )}
+              {codeIssues.length > 0 && (
+                <Badge variant="outline" className="text-yellow-500 border-yellow-500">
+                  <Bug className="h-3 w-3 mr-1" />
+                  {codeIssues.length} Issues
+                </Badge>
+              )}
+              {creditAlerts.some(a => !a.acknowledged) && (
+                <Badge variant="outline" className="text-red-500 border-red-500">
+                  <Shield className="h-3 w-3 mr-1" />
+                  Alerts
+                </Badge>
+              )}
             </div>
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className={`p-2 rounded-lg ${isDarkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-200 text-gray-600'}`}
+            >
+              {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
           </div>
         </div>
-      </header>
+      </div>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        {/* Create New Project */}
-        <Card className="bg-gray-800/50 border-gray-700 mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Plus className="h-5 w-5 mr-2 text-purple-400" />
-              Create New Project
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex space-x-4">
-              <div className="flex-1">
-                <Label htmlFor="project-name">Project Name</Label>
-                <Input
-                  id="project-name"
-                  placeholder="Enter project name..."
-                  value={newProjectName}
-                  onChange={(e) => setNewProjectName(e.target.value)}
-                  className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400"
-                  onKeyPress={(e) => e.key === 'Enter' && createProject()}
-                />
-              </div>
-              <div className="flex items-end">
-                <Button onClick={createProject} className="bg-purple-600 hover:bg-purple-700">
-                  Create Project
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project: any) => (
-            <Card
-              key={project.id}
-              className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all cursor-pointer group"
-              onClick={() => setSelectedProject(project)}
-            >
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  {project.name}
-                  <Badge
-                    variant={project.status === 'ready' ? 'default' : 'secondary'}
-                    className="text-xs"
-                  >
-                    {project.status}
-                  </Badge>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-400 text-sm mb-4">
-                  {project.description || 'No description provided'}
-                </p>
-                <div className="flex items-center justify-between text-sm text-gray-500">
-                  <div className="flex items-center space-x-4">
-                    <span className="flex items-center">
-                      <Code className="h-4 w-4 mr-1" />
-                      {project.techStack?.frontend || 'React'}
-                    </span>
-                    <span className="flex items-center">
-                      <Database className="h-4 w-4 mr-1" />
-                      {project.techStack?.database || 'PostgreSQL'}
-                    </span>
-                  </div>
-                  <span className="flex items-center">
-                    <Users className="h-4 w-4 mr-1" />
-                    0
-                  </span>
-                </div>
-                <div className="mt-4 pt-4 border-t border-gray-700">
-                  <p className="text-xs text-gray-500">
-                    Created {new Date(project.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-
-          {/* Empty State */}
-          {projects.length === 0 && (
-            <div className="col-span-full text-center py-12">
-              <div className="text-gray-500 mb-4">
-                <Code className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p className="text-lg">No projects yet</p>
-                <p className="text-sm">Create your first project to start building with AI</p>
-              </div>
-            </div>
-          )}
+      {/* Navigation Tabs */}
+      <div className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b`}>
+        <div className="flex gap-1 p-2">
+          {tabs.map(tab => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  activeTab === tab.id
+                    ? 'bg-purple-600 text-white'
+                    : isDarkMode
+                    ? 'text-gray-300 hover:bg-gray-700'
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {tab.name}
+              </button>
+            );
+          })}
         </div>
-      </main>
+      </div>
+
+      {/* Content Area */}
+      <div className="flex-1">
+        {activeTab === 'editor' && selectedFile && (
+          <div className="h-full">
+            <AdvancedCodeEditor
+              file={selectedFile}
+              onContentChange={handleContentChange}
+              onFileSaved={handleFileSaved}
+              onRunCode={handleRunCode}
+              onBugDetected={handleBugDetected}
+            />
+          </div>
+        )}
+
+        {activeTab === 'terminal' && (
+          <div className="h-full">
+            <TerminalEmulator
+              projectId={projectId}
+              onCommandExecuted={handleCommandExecuted}
+            />
+          </div>
+        )}
+
+        {activeTab === 'security' && (
+          <div className="h-full">
+            <BugDetector
+              files={files}
+              onIssuesDetected={handleIssuesDetected}
+              onIssueFixed={(result) => console.log('Issue fixed:', result)}
+            />
+          </div>
+        )}
+
+        {activeTab === 'github' && (
+          <div className="h-full">
+            <GitHubIntegration
+              projectId={projectId}
+              files={files.map(f => ({ id: f.id, name: f.name, content: f.content, path: f.path }))}
+              onCommitComplete={handleCommitComplete}
+            />
+          </div>
+        )}
+
+        {activeTab === 'api' && (
+          <div className="h-full">
+            <ApiKeyManager
+              userId={userId}
+              onKeysUpdate={setApiKeys}
+            />
+          </div>
+        )}
+
+        {activeTab === 'monitor' && (
+          <div className="h-full">
+            <ApiCreditMonitor
+              userId={userId}
+              apiKeys={apiKeys}
+              onAlertTriggered={handleAlertTriggered}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Quick Actions Bar */}
+      <div className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-t p-4`}>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {selectedFile && (
+              <>
+                <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Current: {selectedFile.name}
+                </span>
+                <Badge variant="outline" className="text-purple-500 border-purple-500">
+                  {selectedFile.language}
+                </Badge>
+              </>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            <WitchcraftButton
+              onClick={() => setActiveTab('security')}
+              spellType="protection"
+              size="sm"
+            >
+              <Bug className="h-4 w-4 mr-2" />
+              Scan for Issues
+            </WitchcraftButton>
+            <WitchcraftButton
+              onClick={() => setActiveTab('github')}
+              spellType="enchantment"
+              size="sm"
+            >
+              <Github className="h-4 w-4 mr-2" />
+              Push to GitHub
+            </WitchcraftButton>
+            <WitchcraftButton
+              onClick={() => selectedFile && handleRunCode(selectedFile)}
+              spellType="transmutation"
+              size="sm"
+            >
+              <Play className="h-4 w-4 mr-2" />
+              Run Code
+            </WitchcraftButton>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
