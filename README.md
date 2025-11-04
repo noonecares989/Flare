@@ -68,8 +68,6 @@ This single command will:
 Create a `.env.local` file with the following variables:
 
 ```env
-
-```env
 # Database
 DATABASE_URL="postgresql://user:password@host:5432/flareforge"
 REDIS_URL="redis://host:6379"
