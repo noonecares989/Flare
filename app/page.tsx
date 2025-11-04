@@ -80,159 +80,188 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Features Section */}
+      {/* Magical Features Section */}
       <div className="container mx-auto px-4 py-24">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold">
-            Built for the
+            Forged in
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {' '}Future
+              {' '}Ancient Magic
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Enterprise-grade tools with unlimited AI model flexibility
+          <p className="text-xl text-purple-300 max-w-2xl mx-auto">
+            Where centuries-old wisdom meets cutting-edge technology
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl text-purple-400">
-                🚀 Parallel Agent Orchestration
-              </CardTitle>
-              <CardDescription className="text-gray-400">
-                Multiple AI models work in harmony, switching automatically to the best tool for each task
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-gray-300">
-              <p>• Claude for architectural planning</p>
-              <p>• GPT-4 for rapid code generation</p>
-              <p>• Grok for testing and optimization</p>
-              <p>• Automatic fallbacks and error recovery</p>
-            </CardContent>
-          </Card>
+          <MagicalSystemCard
+            icon={<Wand2 className="h-8 w-8" />}
+            title="🧙‍♀️ Magical AI Wizards"
+            description="Enchanted AI agents cast spells to manifest your vision"
+            features={[
+              'Oracle of Planning - Scrys the perfect architecture',
+              'Enchanter of Code - Weaves spells into functional code',
+              'Alchemist of Data - Transforms requirements into databases',
+              'Protector of Security - Casts wards against digital threats'
+            ]}
+          />
 
-          <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl text-purple-400">
-                🎨 Immersive 3D Environment
-              </CardTitle>
-              <CardDescription className="text-gray-400">
-                Visualize your application as a living, breathing 3D model
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-gray-300">
-              <p>• Real-time particle effects</p>
-              <p>• Interactive component exploration</p>
-              <p>• Physics-based animations</p>
-              <p>• Holographic code previews</p>
-            </CardContent>
-          </Card>
+          <MagicalSystemCard
+            icon={<CrystalBall className="h-8 w-8" />}
+            title="🔮 Mystical 3D Crystallization"
+            description="Watch your enchanted application manifest in living 3D"
+            features={[
+              'Crystalline visualization with magical particles',
+              'Interactive spell exploration and manipulation',
+              'Elemental magic effects (fire, water, earth, air)',
+              'Ancient rune-powered animations'
+            ]}
+          />
 
-          <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl text-purple-400">
-                💾 Zero-Lock Architecture
-              </CardTitle>
-              <CardDescription className="text-gray-400">
-                Your code, your control. Export anytime, anywhere
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-gray-300">
-              <p>• Export to GitHub repositories</p>
-              <p>• Download as ZIP packages</p>
-              <p>• Docker container generation</p>
-              <p>• Full codebase ownership</p>
-            </CardContent>
-          </Card>
+          <MagicalSystemCard
+            icon={<SpellBook className="h-8 w-8" />}
+            title="📖 Ancient Grimoire Library"
+            description="Access forbidden knowledge and powerful incantations"
+            features={[
+              'Spell-crafting system for custom code generation',
+              'Ancient wisdom integration from multiple traditions',
+              'Magical recipe book for code transformations',
+              'Elemental affinity-based optimization'
+            ]}
+          />
 
-          <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl text-purple-400">
-                🔗 Live Database Management
-              </CardTitle>
-              <CardDescription className="text-gray-400">
-                Design schemas, write queries, and visualize data in real-time
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-gray-300">
-              <p>• Visual schema designer</p>
-              <p>• SQL query editor</p>
-              <p>• Real-time data visualization</p>
-              <p>• Automated migrations</p>
-            </CardContent>
-          </Card>
+          <MagicalSystemCard
+            icon={<Flame className="h-8 w-8" />}
+            title="💎 Crystal Economy & Marketplace"
+            description="Trade magical artifacts and enchanted code components"
+            features={[
+              'Crystal-based currency system (coins, gems, essence)',
+              'Magical marketplace for enchanted artifacts',
+              'Daily rewards and achievement system',
+              'Ancient vendor trade network'
+            ]}
+          />
         </div>
       </div>
 
-      {/* Tech Stack Section */}
-      <div className="container mx-auto px-4 py-24 border-t border-gray-800">
+      {/* Magical Stack Section */}
+      <div className="container mx-auto px-4 py-24 border-t border-purple-800/30">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl font-bold">Powered By</h2>
-          <p className="text-xl text-gray-400">Cutting-edge technology stack</p>
+          <h2 className="text-4xl font-bold">Enchanted By</h2>
+          <p className="text-xl text-purple-300">Ancient technologies and magical frameworks</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 text-gray-400">
+        <div className="flex flex-wrap justify-center gap-6 text-purple-300">
           {[
-            'Next.js 14',
-            'React 18',
-            'Three.js',
-            'LangChain',
-            'Prisma',
-            'PostgreSQL',
-            'WebSockets',
-            'Monaco Editor',
-            'Tailwind CSS',
-            'TypeScript'
+            { name: 'React 18', icon: '🔮' },
+            { name: 'Next.js 14', icon: '✨' },
+            { name: 'Three.js', icon: '💎' },
+            { name: 'TypeScript', icon: '📜' },
+            { name: 'Prisma', icon: '🗿' },
+            { name: 'PostgreSQL', icon: '🏺' },
+            { name: 'WebSockets', icon: '🔗' },
+            { name: 'Tailwind CSS', icon: '🎨' },
+            { name: 'Magical AI', icon: '🧙‍♀️' }
           ].map((tech) => (
-            <div key={tech} className="bg-gray-800/50 px-6 py-3 rounded-full border border-gray-700">
-              {tech}
+            <div key={tech.name} className="bg-purple-900/30 px-6 py-3 rounded-full border border-purple-600/30 flex items-center gap-2">
+              <span className="text-lg">{tech.icon}</span>
+              <span>{tech.name}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* CTA Section */}
+      {/* Magical CTA Section */}
       <div className="container mx-auto px-4 py-24">
         <div className="text-center space-y-8">
           <h2 className="text-4xl md:text-5xl font-bold">
             Ready to
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {' '}Forge?
+              {' '}Cast Your First Spell?
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Join thousands of developers building the future, one prompt at a time
+          <p className="text-xl text-purple-300 max-w-2xl mx-auto">
+            Join thousands of magical developers building the future, one enchantment at a time
           </p>
           <Link href="/studio">
-            <Button size="lg" className="text-xl px-12 py-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 btn-glow">
-              Start Building Now
+            <WitchcraftButton spellType="powerful" className="text-xl px-12 py-8">
+              <Sparkles className="mr-3 h-6 w-6" />
+              Begin Your Magical Journey
               <ArrowRight className="ml-3 h-6 w-6" />
-            </Button>
+            </WitchcraftButton>
           </Link>
+          <div className="flex items-center justify-center gap-4 text-sm text-purple-400">
+            <div className="flex items-center gap-2">
+              <Heart className="h-4 w-4 text-red-400" />
+              <span>Crafted with ancient magic</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-purple-400" />
+              <span>Powered by witchcraft</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Wand2 className="h-4 w-4 text-blue-400" />
+              <span>Enchanted with wisdom</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-function FeatureCard({ icon, title, description }: {
+function MagicalFeatureCard({ icon, title, description, spellType }: {
   icon: React.ReactNode;
   title: string;
   description: string;
+  spellType: string;
 }) {
   return (
-    <Card className="bg-gray-800/30 border-gray-700 backdrop-blur-sm hover:bg-gray-800/50 transition-all duration-300">
+    <Card className="bg-black/40 backdrop-blur-sm border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 group">
       <CardHeader className="text-center">
-        <div className="flex justify-center text-purple-400 mb-4">
+        <div className="flex justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">
           {icon}
         </div>
-        <CardTitle className="text-xl">{title}</CardTitle>
+        <CardTitle className="text-xl text-white group-hover:text-purple-300 transition-colors">
+          {title}
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <CardDescription className="text-gray-400 text-center">
+        <CardDescription className="text-purple-200 text-center">
           {description}
         </CardDescription>
+      </CardContent>
+    </Card>
+  );
+}
+
+function MagicalSystemCard({ icon, title, description, features }: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  features: string[];
+}) {
+  return (
+    <Card className="bg-black/40 backdrop-blur-sm border-purple-500/20 hover:border-purple-400/30 transition-all duration-300">
+      <CardHeader>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-600/20">
+            {icon}
+          </div>
+          <div>
+            <CardTitle className="text-2xl text-purple-300">{title}</CardTitle>
+            <CardDescription className="text-purple-200">{description}</CardDescription>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        {features.map((feature, index) => (
+          <div key={index} className="flex items-center gap-2 text-sm text-purple-300">
+            <Sparkles className="h-3 w-3 text-purple-400" />
+            {feature}
+          </div>
+        ))}
       </CardContent>
     </Card>
   );
