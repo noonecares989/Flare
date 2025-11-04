@@ -1,0 +1,259 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  projects      Project[]
+  apiKeys       APIKey[]
+  sessions      Session[]
+  agentSessions AgentSession[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Project {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  userId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Project metadata
+  techStack   Json?      // { frontend: string, backend: string, database: string }
+  prompts     Json?      // Array of user prompts
+  config      Json?      // Project configuration
+  status      String     @default("draft") // draft, building, ready, error
+
+  // Relations
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessions        Session[]
+  codeStates      CodeState[]
+  databaseStates  DatabaseState[]
+  agentExecutions AgentExecution[]
+  exports         Export[]
+
+  @@map("projects")
+}
+
+model CollaborationSession {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String
+  token     String   @unique // Collaboration token
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Session state
+  participants Json?   // Array of user participants
+  cursors      Json?   // User cursor positions
+  chatHistory  Json?   // Real-time chat messages
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  yjsDocs YjsDoc[]
+
+  @@map("collaboration_sessions")
+}
+
+model YjsDoc {
+  id        String   @id @default(cuid())
+  sessionId String
+  docName   String
+  content   Json     // Y.js document state
+  version   Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  session CollaborationSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, docName])
+  @@map("yjs_docs")
+}
+
+model APIKey {
+  id          String   @id @default(cuid())
+  userId      String
+  provider    String   // openai, anthropic, grok, etc.
+  encryptedKey String // AES-256 encrypted
+  isActive    Boolean  @default(true)
+  usageCount  Int      @default(0)
+  lastUsed    DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Provider-specific data
+  modelPreferences Json? // Preferred models for this provider
+  rateLimits       Json? // Rate limit information
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  agentExecutions AgentExecution[]
+
+  @@map("api_keys")
+}
+
+model AgentSession {
+  id          String   @id @default(cuid())
+  userId      String
+  projectId   String?
+  sessionId   String?
+  status      String   @default("pending") // pending, running, completed, failed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  completedAt DateTime?
+
+  // Session configuration
+  prompt      String
+  context     Json?    // Previous context and history
+  config      Json?    // Agent configuration and model selection
+
+  // Relations
+  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project  Project?         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  session  CollaborationSession? @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  agents   AgentExecution[]
+
+  @@map("agent_sessions")
+}
+
+model AgentExecution {
+  id             String   @id @default(cuid())
+  agentSessionId String
+  apiKeyId       String?
+  model          String   // gpt-4, claude-3.5-sonnet, etc.
+  agentType      String   // planner, coder, tester, designer
+  status         String   @default("pending") // pending, running, completed, failed
+  input          Json?    // Agent input and context
+  output         Json?    // Agent output and results
+  error          String?  // Error message if failed
+  tokensUsed     Int      @default(0)
+  executionTime  Int      @default(0) // milliseconds
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  completedAt    DateTime?
+
+  // Relations
+  agentSession AgentSession @relation(fields: [agentSessionId], references: [id], onDelete: Cascade)
+  apiKey       APIKey?      @relation(fields: [apiKeyId], references: [id])
+  project      Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("agent_executions")
+}
+
+model CodeState {
+  id        String   @id @default(cuid())
+  projectId String
+  filePath  String
+  content   String   // File content
+  language  String   // Typescript, Python, etc.
+  checksum  String   // Content checksum for change detection
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Version control
+  version   Int      @default(1)
+  authorId  String?  // User who made the change
+  changeLog String?  // Description of changes
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, filePath, version])
+  @@map("code_states")
+}
+
+model DatabaseState {
+  id        String   @id @default(cuid())
+  projectId String
+  schema    Json     // Database schema definition
+  data      Json?    // Sample data or seeds
+  version   Int      @default(1)
+  checksum  String   // Schema checksum
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Migration tracking
+  migrations Json?    // Migration history
+  changeLog  String?  // Description of schema changes
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, version])
+  @@map("database_states")
+}
+
+model Export {
+  id        String   @id @default(cuid())
+  projectId String
+  format    String   // zip, github-repo, docker-image
+  config    Json?    // Export configuration
+  status    String   @default("pending") // pending, processing, completed, failed
+  url       String?  // Download URL for completed exports
+  error     String?  // Error message if failed
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  completedAt DateTime?
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("exports")
+}
