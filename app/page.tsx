@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { WitchcraftButton } from '@/components/ui/WitchcraftButton';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { MagicalButton3D } from '@/components/ui/MagicalButton3D';
+import { MagicalCard3D } from '@/components/ui/MagicalCard3D';
+import { AnimatedBackground } from '@/components/3d/AnimatedBackground';
 import { ArrowRight, Sparkles, Wand2, CrystalBall, SpellBook, Flame, Heart } from 'lucide-react';
 
 export default function LandingPage() {
