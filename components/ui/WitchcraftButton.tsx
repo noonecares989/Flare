@@ -35,7 +35,7 @@ export function WitchcraftButton({
   };
 
   const handleMouseLeave = () => {
-    setIsHovered false);
+    setIsHovered(false);
     setSpellEffect('magical-disappear');
   };
 
