@@ -422,6 +422,15 @@ async function generateCode(prompt, model) {
             />
           </div>
         )}
+
+        {activeTab === 'deploy' && (
+          <div className="h-full">
+            <AutoHoster
+              projectFiles={files.map(f => ({ name: f.name, content: f.content, path: f.path }))}
+              onHostingComplete={handleHostingComplete}
+            />
+          </div>
+        )}
       </div>
 
       {/* Quick Actions Bar */}
