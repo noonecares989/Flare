@@ -57,6 +57,33 @@ This single command will:
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+## 🔑 API Key Configuration
+
+### Closerouter AI (Recommended)
+
+Closerouter AI provides free credits and access to multiple AI providers through a single API key:
+
+1. Get your API key from [Closerouter Dashboard](https://closerouter.ai)
+2. Add it to your `.env.local` file: `CLOSEROUTER_API_KEY="cr_your_key_here"`
+3. The platform will automatically use the best available model with cost optimization
+
+### Other Providers
+
+You can also use your own API keys from these providers:
+
+- **OpenAI**: Get API key from [OpenAI Platform](https://platform.openai.com)
+- **Anthropic**: Get API key from [Anthropic Console](https://console.anthropic.com)
+- **Google**: Get API key from [Google AI Studio](https://aistudio.google.com)
+- **Groq**: Get API key from [Groq Console](https://console.groq.com)
+
+### Cost Optimization
+
+The platform automatically optimizes costs by:
+- Using Closerouter free credits first
+- Selecting the most cost-effective model for each task
+- Providing automatic fallback between providers
+- Real-time cost tracking and alerts
+
 ## 🔧 Requirements
 
 ### Prerequisites
