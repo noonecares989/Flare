@@ -6,10 +6,10 @@ import { Providers } from './providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'FlareForge AI Studio',
-  description: 'Revolutionary 3D AI-powered full-stack application builder',
-  keywords: ['AI', '3D', 'Code Generation', 'Real-time Collaboration', 'Next.js'],
-  authors: [{ name: 'FlareForge Team' }],
+  title: 'FlareForge AI Studio - Created by CyberSultan',
+  description: 'Revolutionary 3D AI-powered full-stack application builder - Created by CyberSultan',
+  keywords: ['AI', '3D', 'Code Generation', 'Real-time Collaboration', 'Next.js', 'CyberSultan'],
+  authors: [{ name: 'CyberSultan' }],
   viewport: {
     width: 'device-width',
     initialScale: 1,
