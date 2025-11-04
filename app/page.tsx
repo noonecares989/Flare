@@ -71,24 +71,41 @@ export default function LandingPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-16">
-              <MagicalFeatureCard
-                icon={<Wand2 className="h-8 w-8" />}
-                title="Enchanted AI Agents"
-                description="Magical AI wizards cast spells to build your applications"
-                spellType="enchantment"
-              />
-              <MagicalFeatureCard
-                icon={<CrystalBall className="h-8 w-8" />}
-                title="Mystical 3D Visualization"
-                description="Watch your enchanted app manifest in crystalline 3D space"
-                spellType="divination"
-              />
-              <MagicalFeatureCard
-                icon={<SpellBook className="h-8 w-8" />}
-                title="Ancient Spell Crafting"
-                description="Craft powerful spells and magical code artifacts"
-                spellType="transmutation"
-              />
+              <MagicalCard3D variant="enchantment" floating={true}>
+                <div className="text-center">
+                  <div className="flex justify-center text-purple-400 mb-4">
+                    <Wand2 className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Enchanted AI Agents</h3>
+                  <p className="text-purple-200 text-sm">
+                    Magical AI wizards cast spells to build your applications
+                  </p>
+                </div>
+              </MagicalCard3D>
+
+              <MagicalCard3D variant="divination" floating={true}>
+                <div className="text-center">
+                  <div className="flex justify-center text-pink-400 mb-4">
+                    <CrystalBall className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Mystical 3D Visualization</h3>
+                  <p className="text-purple-200 text-sm">
+                    Watch your enchanted app manifest in crystalline 3D space
+                  </p>
+                </div>
+              </MagicalCard3D>
+
+              <MagicalCard3D variant="transmutation" floating={true}>
+                <div className="text-center">
+                  <div className="flex justify-center text-green-400 mb-4">
+                    <SpellBook className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Ancient Spell Crafting</h3>
+                  <p className="text-purple-200 text-sm">
+                    Craft powerful spells and magical code artifacts
+                  </p>
+                </div>
+              </MagicalCard3D>
             </div>
           </div>
         </div>
