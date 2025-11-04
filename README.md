@@ -157,7 +157,7 @@ GOOGLE_CLIENT_SECRET=""
 - **3D Graphics**: Three.js, React Three Fiber, GSAP
 - **Database**: PostgreSQL, Prisma ORM
 - **Real-Time**: WebSockets, Y.js, Redis
-- **AI**: LangChain, OpenAI, Anthropic, Grok
+- **AI**: LangChain, OpenAI, Anthropic, Grok, Closerouter AI
 - **Authentication**: NextAuth.js
 - **Code Editor**: Monaco Editor
 
